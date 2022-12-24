@@ -1,0 +1,47 @@
+{% extends 'back/base.html' %}
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-18">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <a class="btn btn-success" href="{% url 'tambah_surah' %}">Tambah Surah</a>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Surah</th>
+                                <th>Kategory</th>
+                                <th>Date</th>
+                                <th>Aksi</th>
+                            </thead>
+                            <tbody>
+                                {% for s in surah %}
+
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{s.nama}}</td>
+                                    <td>{{s.judul}}</td>
+                                    <td>{{s.kategory}}</td>
+                                    <td>{{s.date}}</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-info" href="{% url 'lihat_surah' s.id %}">Lihat</a>
+                                        <a class="btn btn-sm btn-warning" href="{% url 'edit_surah' s.id %}">Edit</a>
+                                        <a onclick="return confirm('Apakah anda yakin ingin menghapus?');" class="btn btn-sm btn-danger" href="{% url 'delete_surah' s.id %}">Hapus</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
